@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Juli: No estás sola ♥</title>
+    <title>Para mi Leslie ♥</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-rosa: #ff0055;
-            --neon-azul: #00d2ff;
+            --neon-rosa: #ff2a6d;
+            --neon-azul: #05d9e8;
+            --rosa-oscura: #b5179e;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle at center, #0d1b2a 0%, #010811 100%);
+            background: radial-gradient(circle at center, #0b132b 0%, #010409 100%);
             font-family: 'Quicksand', sans-serif;
             min-height: 100vh;
             display: flex;
@@ -25,7 +26,7 @@
             text-align: center;
         }
 
-        /* --- EFECTO DE LLUVIA --- */
+        /* --- EFECTO DE LLUVIA REALISTA --- */
         .lluvia {
             position: absolute;
             top: 0;
@@ -38,10 +39,10 @@
 
         .gota {
             position: absolute;
-            background: linear-gradient(transparent, rgba(255, 255, 255, 0.4));
-            width: 1px;
-            height: 60px;
-            opacity: 0.7;
+            background: linear-gradient(transparent, rgba(255, 255, 255, 0.3));
+            width: 1.5px;
+            height: 50px;
+            opacity: 0.6;
             animation: caer linear infinite;
         }
 
@@ -58,128 +59,154 @@
             flex-direction: column;
             align-items: center;
             width: 90%;
-            max-width: 400px;
+            max-width: 420px;
         }
 
-        /* --- CÚPULA Y ROSA (Estilo la foto) --- */
+        /* --- CÚPULA DE CRISTAL --- */
         .cupula {
-            width: 200px;
-            height: 320px;
-            border: 4px solid var(--neon-azul);
+            width: 190px;
+            height: 300px;
+            border: 3px solid rgba(5, 217, 232, 0.4);
             border-radius: 100px 100px 20px 20px;
             position: relative;
-            background: rgba(0, 210, 255, 0.03);
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.2), inset 0 0 20px rgba(0, 210, 255, 0.1);
+            background: linear-gradient(to bottom, rgba(5, 217, 232, 0.02), rgba(0,0,0,0.4));
+            box-shadow: 0 0 30px rgba(5, 217, 232, 0.15), inset 0 0 15px rgba(5, 217, 232, 0.1);
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* El famoso aro de arriba de la cúpula */
         .cupula::before {
             content: '';
             position: absolute;
-            top: -25px;
-            width: 25px;
-            height: 25px;
-            border: 4px solid var(--neon-azul);
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
-        }
-
-        /* Tallo de la Rosa */
-        .tallo {
-            width: 4px;
-            height: 160px;
-            background: #2d6a4f;
-            position: absolute;
-            bottom: 40px;
-            box-shadow: 0 0 10px rgba(45, 106, 79, 0.5);
-        }
-
-        /* Hojas del tallo */
-        .hoja {
+            top: -20px;
             width: 20px;
-            height: 10px;
-            background: #40916c;
-            position: absolute;
-            border-radius: 10px 0 10px 0;
+            height: 20px;
+            border: 3px solid rgba(5, 217, 232, 0.4);
+            border-radius: 50%;
         }
-        .hoja.izq { left: -18px; top: 60px; transform: rotate(-20deg); }
-        .hoja.der { right: -18px; top: 90px; transform: rotate(40deg); border-radius: 0 10px 0 10px; }
 
-        /* Capullo de la Rosa Neón */
-        .rosa-centro {
-            width: 45px;
-            height: 45px;
-            background: var(--neon-rosa);
+        /* --- LA ROSA REALISTA EN CSS --- */
+        .rosa {
             position: absolute;
-            top: 85px;
-            border-radius: 50% 50% 50% 50%;
-            box-shadow: 0 0 30px var(--neon-rosa), 0 0 60px var(--neon-rosa);
+            top: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Capullos y Pétalos de la Rosa (Capas superpuestas) */
+        .petalos-rosa {
+            position: relative;
+            width: 50px;
+            height: 45px;
             z-index: 5;
         }
 
-        /* --- PÉTALOS QUE CAEN --- */
-        .petalo {
-            width: 22px;
-            height: 14px;
-            background: var(--neon-rosa);
-            border-radius: 50% 50% 20% 20%;
+        .petalo-interno {
             position: absolute;
-            top: 100px;
-            box-shadow: 0 0 15px var(--neon-rosa);
+            background: var(--neon-rosa);
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3), 0 0 20px rgba(255, 42, 109, 0.4);
+        }
+
+        .p1 { width: 35px; height: 35px; left: 8px; top: 5px; z-index: 3; background: var(--rosa-oscura); }
+        .p2 { width: 45px; height: 40px; left: 3px; top: 2px; border-radius: 40% 40% 50% 50%; z-index: 2; }
+        .p3 { width: 50px; height: 42px; left: 0; top: 0; border-radius: 50%; z-index: 1; opacity: 0.9; }
+
+        /* Tallo y hojas */
+        .tallo {
+            width: 4px;
+            height: 140px;
+            background: #1b4332;
+            box-shadow: 0 0 8px rgba(27, 67, 50, 0.6);
+            position: relative;
+            z-index: 2;
+            margin-top: -5px;
+        }
+
+        .hoja {
+            width: 18px;
+            height: 10px;
+            background: #2d6a4f;
+            position: absolute;
+            border-radius: 15px 0 15px 0;
+        }
+        .hoja.izq { left: -16px; top: 40px; transform: rotate(-25deg); }
+        .hoja.der { right: -16px; top: 65px; transform: rotate(45deg); border-radius: 0 15px 0 15px; }
+
+        .base-tierra {
+            width: 120px;
+            height: 10px;
+            background: #0f0f14;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        }
+
+        /* --- PÉTALOS INTERACTIVOS QUE CAEN --- */
+        .petalo-caido {
+            width: 20px;
+            height: 13px;
+            background: var(--neon-rosa);
+            border-radius: 50% 50% 30% 30%;
+            position: absolute;
+            top: 85px;
+            box-shadow: 0 0 12px var(--neon-rosa);
             z-index: 4;
         }
 
-        @keyframes caerPetalo {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(175px) rotate(70deg); top: 100px; }
+        @keyframes caídaSuave {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(180px) rotate(85deg); top: 85px; }
         }
 
-        /* --- TEXTOS Y MENSAJES --- */
+        /* --- TEXTOS --- */
         h1 {
             font-family: 'Dancing Script', cursive;
             color: #fff;
-            font-size: 2.2rem;
-            margin: 0 0 10px 0;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            font-size: 2.5rem;
+            margin: 0 0 5px 0;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
 
         .mensaje {
             font-size: 1.1rem;
-            line-height: 1.6;
-            min-height: 75px;
-            color: #e0e1dd;
-            padding: 0 10px;
+            line-height: 1.7;
+            min-height: 90px;
+            color: #d1d5db;
+            padding: 0 15px;
             transition: opacity 0.4s ease;
+            font-weight: 400;
         }
 
-        /* --- BOTÓN INTERACTIVO --- */
+        /* --- BOTÓN DE INTERACCIÓN --- */
         .btn-interact {
-            background: linear-gradient(135deg, #ff0055, #9e0031);
+            background: linear-gradient(135deg, #ff2a6d, #9e0031);
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 14px 35px;
             font-size: 1rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 0, 85, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 42, 109, 0.3);
             transition: all 0.3s ease;
-            margin-top: 15px;
+            margin-top: 10px;
             font-family: 'Quicksand', sans-serif;
         }
 
         .btn-interact:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
             box-shadow: 0 8px 25px var(--neon-rosa);
         }
 
         .btn-interact:disabled {
-            background: #415a77;
+            background: #334155;
             box-shadow: none;
             cursor: not-allowed;
+            opacity: 0.6;
         }
     </style>
 </head>
@@ -188,97 +215,92 @@
     <div class="lluvia" id="lluvia-box"></div>
 
     <div class="container">
-        <h1>Para mi Juli ✨</h1>
+        <h1>Para mi Leslie ✨</h1>
         
         <div class="cupula">
-            <div class="tallo">
-                <div class="hoja izq"></div>
-                <div class="hoja der"></div>
+            <div class="rosa">
+                <div class="petalos-rosa">
+                    <div class="petalo-interno p1"></div>
+                    <div class="petalo-interno p2"></div>
+                    <div class="petalo-interno p3"></div>
+                </div>
+                <div class="tallo">
+                    <div class="hoja izq"></div>
+                    <div class="hoja der"></div>
+                </div>
             </div>
-            <div class="rosa-centro" id="rosa-flower"></div>
+            <div class="base-tierra"></div>
             </div>
 
         <div class="mensaje" id="texto-mensaje">
-            Sé que estás pasando por días grises, Juli... Pero recuerda que incluso en las tormentas más fuertes, no estás sola. Toca el botón.
+            Sé que estás pasando por momentos difíciles y que a veces te sientes sola, mi amor... Pero quiero recordarte algo muy importante. Toca el botón de abajo.
         </div>
 
-        <button class="btn-interact" id="btn-accion">Desprender un pétalo ❤️</button>
+        <button class="btn-interact" id="btn-accion">Desprender un pétalo ♥</button>
     </div>
 
     <script>
-        // 1. GENERACIÓN DE LA LLUVIA DE FONDO
+        // 1. Efecto Lluvia
         const lluviaBox = document.getElementById('lluvia-box');
-        const cantidadGotas = 60;
-
-        for (let i = 0; i < cantidadGotas; i++) {
+        const gotas = 65;
+        for (let i = 0; i < gotas; i++) {
             const gota = document.createElement('div');
             gota.classList.add('gota');
             gota.style.left = Math.random() * 100 + 'vw';
-            gota.style.animationDuration = (Math.random() * 1 + 0.7) + 's'; // Velocidad de caída
+            gota.style.animationDuration = (Math.random() * 0.8 + 0.6) + 's';
             gota.style.animationDelay = Math.random() * 2 + 's';
             lluviaBox.appendChild(gota);
         }
 
-        // 2. CONFIGURACIÓN DE LOS MENSAJES QUE IRÁN ALIVIANDO SU SOLEDAD
-        const mensajesJuli = [
-            "Cada pétalo que cae es un recordatorio de que estoy aquí para ti, en las buenas y en las malas. No estás sola, Juli. 🌧️❤️",
-            "Tu sonrisa es demasiado hermosa como para que la soledad te la robe. Cuando sientas que todo está oscuro, mírame a mí, yo seré tu luz. ✨",
-            "A veces está bien no estar bien. Llora si el cielo llora, pero nunca olvides lo fuerte, valiosa e increíble que eres, Diana Julissa. 🌹",
-            "Aunque sientas frío o el día sea difícil, mi apoyo y mi cariño hacia ti son incondicionales. Siempre tendrás un refugio en mí. 🤗💖",
-            "Mi amor y mis ganas de cuidarte durarán mucho más allá de que caiga el último pétalo... ¿Me dejarías ser quien te acompañe en cada tormenta? ¿Quieres ser mi novia? 👑💍"
+        // 2. NUEVOS TEXTOS EXCLUSIVOS PARA TU NOVIA LESLIE
+        const mensajesLeslie = [
+            "Aunque la distancia o los problemas hagan que el día se sienta gris, yo estoy aquí contigo. No estás sola ni un solo segundo, mi vida. 🌧️❤️",
+            "A veces la mente nos hace sentir en soledad, pero recuerda que tienes a un novio que te ama, que te piensa y que está loco por verte sonreír otra vez. 🥰",
+            "Está bien tener días malos y sentirse cansada, Leslie. No tienes que ser fuerte todo el tiempo, yo cuido de ti cuando te falten las fuerzas. 🌹",
+            "Cada pétalo que dejas caer es una promesa mía: prometo escucharte, abrazarte fuerte cuando lo necesites y recordarte lo valiosa que eres para mí. 💖",
+            "Mi amor por ti es real, firme y fuerte, y va a durar muchísimo más de lo que tarde en caer el último pétalo. Siempre juntos, mi reina. Gracias por ser mi novia. 👑🔒"
         ];
 
         let clickCount = 0;
         const btnAccion = document.getElementById('btn-accion');
         const textoMensaje = document.getElementById('texto-mensaje');
         const cupula = document.querySelector('.cupula');
-        const rosaCentro = document.getElementById('rosa-flower');
 
-        // 3. ANIMACIÓN INTERACTIVA DE LOS PÉTALOS
+        // 3. Mecánica de caída de pétalos y cambio de textos
         btnAccion.addEventListener('click', () => {
-            if (clickCount >= mensajesJuli.length) return;
+            if (clickCount >= mensajesLeslie.length) return;
 
-            btnAccion.disabled = true; // Desactivar temporalmente para evitar spam
+            btnAccion.disabled = true;
 
-            // Crear el pétalo físico en el aire
+            // Generar pétalo físico animado
             const petalo = document.createElement('div');
-            petalo.classList.add('petalo');
-            
-            // Variar un poquito la posición inicial de salida para realismo
-            petalo.style.left = (90 + (Math.random() * 16 - 8)) + 'px'; 
-            petalo.style.animation = 'caerPetalo 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+            petalo.classList.add('petalo-caido');
+            petalo.style.left = (85 + (Math.random() * 14 - 7)) + 'px'; 
+            petalo.style.animation = 'caídaSuave 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
             cupula.appendChild(petalo);
 
-            // Cambiar el mensaje justo cuando el pétalo llega abajo (a los 2.2 segundos)
+            // Sincronizar texto cuando el pétalo toque la base
             setTimeout(() => {
                 textoMensaje.style.opacity = 0;
                 
                 setTimeout(() => {
-                    textoMensaje.innerHTML = mensajesJuli[clickCount];
+                    textoMensaje.innerHTML = mensajesLeslie[clickCount];
                     textoMensaje.style.opacity = 1;
                     clickCount++;
 
-                    // Manejar cambios de fases o el final
-                    if (clickCount < mensajesJuli.length) {
+                    if (clickCount < mensajesLeslie.length) {
                         btnAccion.disabled = false;
-                        btnAccion.textContent = "Desprender otro pétalo ❤️";
+                        btnAccion.textContent = "Ver el siguiente mensaje ♥";
                     } else {
-                        // Última fase: La propuesta oficial
+                        // Cierre definitivo sin propuesta de noviazgo (porque ya lo son)
                         btnAccion.disabled = false;
-                        btnAccion.textContent = "¡SÍ, QUIERO SER TU NOVIA! 💖";
-                        btnAccion.style.background = "linear-gradient(135deg, #00d2ff, #0066ff)";
-                        btnAccion.style.boxShadow = "0 5px 25px rgba(0, 210, 255, 0.6)";
+                        btnAccion.textContent = "Te amo, Leslie y aquí voy a estar siempre 💕";
+                        btnAccion.style.background = "linear-gradient(135deg, #05d9e8, #0056b3)";
+                        btnAccion.style.boxShadow = "0 5px 20px rgba(5, 217, 232, 0.4)";
                         
-                        // Modificar el click del botón final
                         btnAccion.onclick = () => {
-                            textoMensaje.innerHTML = "¡Me haces el hombre más feliz del planeta, Juli! Prometo ser tu calma en los días de lluvia y tu alegría en los días de sol. Te adoro. 🥰✨";
+                            textoMensaje.innerHTML = "Espero haberte sacado una sonrisa hoy. Cuando te sientas sola, vuelve a entrar aquí y recuerda que te amo con todo mi corazón. Te veo pronto, mi niña linda. 🥰✨";
                             btnAccion.style.display = 'none';
                         };
                     }
-                }, 400);
-
-            }, 2100);
-        });
-    </script>
-</body>
-</html>
+                }, 400
